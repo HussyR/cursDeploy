@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container-register">
+        <div id="title">
+            <i class="material-icons lock">lock</i> Регистрация
+        </div>
+
+        <form th:action="@{/registration}" method="post" th:object="${user}">
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">email</i>
+                </div>
+                <input id="email" placeholder="Почта" type="email" th:field="*{email}" required class="validate" autocomplete="off">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">face</i>
+                </div>
+                <input placeholder="Имя пользователя" type="text" th:field="*{name}" required class="validate" autocomplete="off">
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="input">
+                <div class="input-addon">
+                    <i class="material-icons">vpn_key</i>
+                </div>
+                <input id="password" placeholder="Пароль" type="password" th:field="*{password}" required class="validate" autocomplete="off">
+            </div>
+            <input type="submit" value="Зарегистрироваться" />
+        </form>
+        <div th:if="${param.success}">
+            <div>Вы успешно зарегистрировались!</div>
+        </div>
+        <div class="register">
+            Уже зарегистрированы на сайте?
+            <a href="/login"><button id="register-link">Логин</button></a>
+        </div>
+    </div>
+</body>
+
+</html>
